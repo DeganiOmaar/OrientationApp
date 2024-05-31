@@ -248,7 +248,7 @@ class _AvisHomeState extends State<AvisHome> {
                                         allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const HomeScience(),
+                                        Get.to(() => const HomeScience(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },
@@ -288,7 +288,7 @@ class _AvisHomeState extends State<AvisHome> {
                                         allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(
+                                        Get.to(
                                             () => const EcoGestionScreen(),
                                             transition:
                                                 Transition.rightToLeft);
@@ -329,7 +329,7 @@ class _AvisHomeState extends State<AvisHome> {
                                         allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const LettresScreen(),
+                                        Get.to(() => const LettresScreen(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },
@@ -369,7 +369,7 @@ class _AvisHomeState extends State<AvisHome> {
                                         allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(
+                                        Get.to(
                                             () =>
                                                 const InformatiqueScreen(),
                                             transition:

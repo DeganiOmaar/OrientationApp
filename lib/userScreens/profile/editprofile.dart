@@ -7,7 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:orientation_app/userScreens/profile/priflebutton.dart';
-import 'package:orientation_app/userScreens/profile/profilepage.dart';
+import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/profile/profiletextfield.dart';
 import '../../shared/colors.dart';
 
@@ -300,7 +300,7 @@ class _EditProfileState extends State<EditProfile> {
                                       .format(startDate),
                             });
                             setState(() {});
-                            Get.off(() => const ProfilePage());
+                            Get.off(() => const Profile());
                           },
                           textButton: "Mettre à jour votre profil")),
                 ],

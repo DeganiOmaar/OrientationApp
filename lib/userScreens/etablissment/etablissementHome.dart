@@ -29,7 +29,6 @@ import 'package:orientation_app/userScreens/registerscreens/login.dart';
 
 import '../contact/reclamations.dart';
 
-
 class Etablissement extends StatefulWidget {
   const Etablissement({super.key});
 
@@ -38,14 +37,15 @@ class Etablissement extends StatefulWidget {
 }
 
 class _EtablissementState extends State<Etablissement> {
-List _allResult = [];
+  List _allResult = [];
   List _resultList = [];
   final TextEditingController _searchController = TextEditingController();
   _onSearchChanged() {
     print(_searchController.text);
     searchResultList();
   }
-searchResultList() {
+
+  searchResultList() {
     var showResults = [];
     if (_searchController.text != "") {
       for (var jobSnapshot in _allResult) {
@@ -62,7 +62,8 @@ searchResultList() {
       _resultList = showResults;
     });
   }
-   getJobsStream() async {
+
+  getJobsStream() async {
     var data = await FirebaseFirestore.instance
         .collection('etablissment')
         // .orderBy('faculte')
@@ -73,8 +74,8 @@ searchResultList() {
     });
     searchResultList();
   }
-  
-    @override
+
+  @override
   void dispose() {
     _searchController.removeListener(_onSearchChanged);
     _searchController.dispose();
@@ -87,13 +88,10 @@ searchResultList() {
     super.didChangeDependencies();
   }
 
-
-
   Map userData = {};
   bool isLoading = true;
 
   getData() async {
-    
     setState(() {
       isLoading = true;
     });
@@ -116,12 +114,9 @@ searchResultList() {
 
   @override
   void initState() {
-     _searchController.addListener(_onSearchChanged);
-     getData();
-    //  Future.delayed(const Duration(seconds: 10),(){
-    //    getData();
-    //  });
-    
+    _searchController.addListener(_onSearchChanged);
+    getData();
+
     super.initState();
   }
 
@@ -129,672 +124,658 @@ searchResultList() {
   Widget build(BuildContext context) {
     return isLoading
         ? Scaffold(
-         
             body: Center(
-              child: LoadingAnimationWidget.discreteCircle(
-                size: 32,
-                color: const Color.fromARGB(255, 16, 16, 16),
-              )
-            )
-            
-          )
+                child: LoadingAnimationWidget.discreteCircle(
+            size: 32,
+            color: const Color.fromARGB(255, 16, 16, 16),
+          )))
         : Scaffold(
-                 appBar: AppBar(
-        centerTitle: true,
-        title: const Row(
-          children: [
-            SizedBox(
-              width: 65,
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Text(
-              "Etablissment",
-              style:
-                  TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
-            )
-          ],
-        ),
-        backgroundColor: Colors.white,
-        leading: Builder(
-          builder: (context) => IconButton(
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              },
-              icon: const Icon(
-                Icons.menu,
-                color: blackColor,
-              )),
-        ),
+            appBar: AppBar(
+              centerTitle: true,
+              title: const Row(
+                children: [
+                  SizedBox(
+                    width: 65,
                   ),
-                  drawer: SizedBox(
-        // width: MediaQuery.of(context).size.width,
-        child: Drawer(
-            backgroundColor: mainColor,
-            child: SingleChildScrollView(
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Etablissment",
+                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
+                  )
+                ],
+              ),
+              backgroundColor: Colors.white,
+              leading: Builder(
+                builder: (context) => IconButton(
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    },
+                    icon: const Icon(
+                      Icons.menu,
+                      color: blackColor,
+                    )),
+              ),
+            ),
+            drawer: SizedBox(
+              // width: MediaQuery.of(context).size.width,
+              child: Drawer(
+                  backgroundColor: mainColor,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Row(
+                          children: [
+                            InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Icon(
+                                    Icons.arrow_back,
+                                    color: blackColor,
+                                  ),
+                                )),
+                            const Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 15.0),
+                              child: ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                      padding: const EdgeInsets.all(12),
+                                      elevation: 0,
+                                      backgroundColor:
+                                          Colors.white.withOpacity(0.5),
+                                      foregroundColor: Colors.black,
+                                      side: const BorderSide(
+                                        width: 1.0,
+                                        color: mainColor,
+                                      )),
+                                  child: const Text(
+                                    ' Aide ',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                  )),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 30,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                          child: Text(
+                            userData['nom'].substring(0, 1).toUpperCase() +
+                                userData['nom'].substring(1) +
+                                " " +
+                                userData['prenom']
+                                    .substring(0, 1)
+                                    .toUpperCase() +
+                                userData['prenom'].substring(1),
+                            style: const TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: whiteColor),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Container(
+                          decoration: const BoxDecoration(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                            ),
+                            color: whiteColor,
+                          ),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                const Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 20.0),
+                                  child: Text(
+                                    "Bienvenue à...",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Page d'accueil",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600),
+                                  ),
+                                  leading: SvgPicture.asset(
+                                    'assets/images/accueil.svg',
+                                    height: 25.0,
+                                    width: 70.0,
+                                    allowDrawingOutsideViewBox: true,
+                                  ),
+                                  onTap: () {
+                                    Get.off(() => const HomeScreen(),
+                                        transition: Transition.rightToLeft);
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 30,
+                                ),
+                                userData['role'] == "1/2 année"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Section Sciences ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/direction.svg',
+                                          height: 30.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.to(() => const HomeScience(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : ListTile(
+                                        title: const Text(
+                                          "Etablissments",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/education.svg',
+                                          height: 25.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Etablissement(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                userData['role'] == "1/2 année"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Section Economie/Gestion ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/direction.svg',
+                                          height: 30.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.to(
+                                              () => const EcoGestionScreen(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : ListTile(
+                                        title: const Text(
+                                          "Formations",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/formation.svg',
+                                          height: 25.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Formation(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                userData['role'] == "1/2 année"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Section Lettres/Langues ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/direction.svg',
+                                          height: 30.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.to(() => const LettresScreen(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : ListTile(
+                                        title: const Text(
+                                          "Bourses",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/bourse.svg',
+                                          height: 25.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Bourses(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                userData['role'] == "1/2 année"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Section Informatiques ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/direction.svg',
+                                          height: 30.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.to(
+                                              () => const InformatiqueScreen(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : ListTile(
+                                        title: const Text(
+                                          "Experiences",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/works.svg',
+                                          height: 30.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Experience(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                userData['role'] == "1/2 année"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Questions des Élèves ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/ask2.svg',
+                                          height: 40.0,
+                                          width: 50.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const AvisHome(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : ListTile(
+                                        title: const Text(
+                                          "Evennements",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/event.svg',
+                                          height: 25.0,
+                                          width: 60.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Evenement(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      ),
+                                userData['role'] == "1/2 année"
+                                    ? Container()
+                                    : userData['role'] == "admin"
+                                        ? Container()
+                                        : const SizedBox(
+                                            height: 20,
+                                          ),
+                                userData['role'] == "1/2 année"
+                                    ? Container()
+                                    : userData['role'] == "admin"
+                                        ? Container()
+                                        : ListTile(
+                                            title: const Text(
+                                              "Questions ",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            leading: SvgPicture.asset(
+                                              'assets/images/ask2.svg',
+                                              height: 40.0,
+                                              width: 40.0,
+                                              allowDrawingOutsideViewBox: true,
+                                            ),
+                                            onTap: () {
+                                              Get.off(() => const AvisHome(),
+                                                  transition:
+                                                      Transition.rightToLeft);
+                                            },
+                                          ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                userData['role'] == "admin"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Reclamations",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/ask2.svg',
+                                          height: 40.0,
+                                          width: 40.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Reclamation(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : ListTile(
+                                        title: const Text(
+                                          "Questionner le robot ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/ask2.svg',
+                                          height: 40.0,
+                                          width: 70.0,
+                                          // allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(() => const Robot(),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      ),
+                                userData['role'] == "1/2 année"
+                                    ? const SizedBox(
+                                        height: 20,
+                                      )
+                                    : Container(),
+                                userData['role'] == "admin"
+                                    ? const SizedBox(
+                                        height: 20,
+                                      )
+                                    : userData['role'] == "1/2 année"
+                                        ? Container()
+                                        : const SizedBox(
+                                            height: 20,
+                                          ),
+                                userData['role'] == "1/2 année"
+                                    ? Container()
+                                    : userData['role'] == "admin"
+                                        ? Container()
+                                        : ListTile(
+                                            title: const Text(
+                                              "Notifications ",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            leading: SvgPicture.asset(
+                                              'assets/images/notification.svg',
+                                              height: 30.0,
+                                              width: 70.0,
+                                              allowDrawingOutsideViewBox: true,
+                                            ),
+                                            onTap: () {
+                                              Get.off(
+                                                  () => Notifications(
+                                                        uid: userData['uid'],
+                                                      ),
+                                                  transition:
+                                                      Transition.rightToLeft);
+                                            },
+                                          ),
+                                userData['role'] == "admin"
+                                    ? Container()
+                                    : userData['role'] == "1/2 année"
+                                        ? Container()
+                                        : const SizedBox(
+                                            height: 20,
+                                          ),
+                                userData['role'] == "1/2 année"
+                                    ? ListTile(
+                                        title: const Text(
+                                          "Notifications ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w600),
+                                        ),
+                                        leading: SvgPicture.asset(
+                                          'assets/images/notification.svg',
+                                          height: 30.0,
+                                          width: 70.0,
+                                          allowDrawingOutsideViewBox: true,
+                                        ),
+                                        onTap: () {
+                                          Get.off(
+                                              () => Notifications(
+                                                    uid: userData['uid'],
+                                                  ),
+                                              transition:
+                                                  Transition.rightToLeft);
+                                        },
+                                      )
+                                    : userData['role'] == "admin"
+                                        ? ListTile(
+                                            title: const Text(
+                                              "Ajouter Actualité",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            leading: SvgPicture.asset(
+                                              'assets/images/add.svg',
+                                              height: 25.0,
+                                              width: 70.0,
+                                              allowDrawingOutsideViewBox: true,
+                                            ),
+                                            onTap: () {
+                                              Get.off(
+                                                  () => const AddActualite(),
+                                                  transition:
+                                                      Transition.rightToLeft);
+                                            },
+                                          )
+                                        : ListTile(
+                                            title: const Text(
+                                              "Contact",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w600),
+                                            ),
+                                            leading: SvgPicture.asset(
+                                              'assets/images/typing.svg',
+                                              height: 40.0,
+                                              width: 70.0,
+                                              allowDrawingOutsideViewBox: true,
+                                            ),
+                                            onTap: () {
+                                              Get.off(() => const Contact(),
+                                                  transition:
+                                                      Transition.rightToLeft);
+                                            },
+                                          ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Profile",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600),
+                                  ),
+                                  leading: SvgPicture.asset(
+                                    'assets/images/profile.svg',
+                                    height: 30.0,
+                                    width: 70.0,
+                                    allowDrawingOutsideViewBox: true,
+                                  ),
+                                  onTap: () {
+                                    Get.off(() => const Profile(),
+                                        transition: Transition.rightToLeft);
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                ListTile(
+                                  title: const Text(
+                                    "Déconnecter",
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.w600),
+                                  ),
+                                  leading: SvgPicture.asset(
+                                    'assets/images/logout.svg',
+                                    height: 25.0,
+                                    width: 70.0,
+                                    allowDrawingOutsideViewBox: true,
+                                  ),
+                                  onTap: () async {
+                                    await FirebaseAuth.instance.signOut();
+                                    if (!mounted) return;
+                                    Navigator.of(context).pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginPage()),
+                                        (route) => false);
+                                  },
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                              ]),
+                        )
+                      ],
+                    ),
+                  )),
+            ),
+            backgroundColor: Colors.white,
+            body: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   Row(
                     children: [
-                      InkWell(
-                          onTap: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: const Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Icon(
-                              Icons.arrow_back,
-                              color: blackColor,
-                            ),
-                          )),
-                      const Spacer(),
-                      Padding(
-                        padding: const EdgeInsets.only(right: 15.0),
-                        child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                                padding: const EdgeInsets.all(12),
-                                elevation: 0,
-                                backgroundColor:
-                                    Colors.white.withOpacity(0.5),
-                                foregroundColor: Colors.black,
-                                side: const BorderSide(
-                                  width: 1.0,
-                                  color: mainColor,
-                                )),
-                            child: const Text(
-                              ' Aide ',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold),
-                            )),
+                      userData['role'] == 'admin'
+                          ? GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AddEtablissement(
+                                              uid: userData['uid'],
+                                            )));
+                              },
+                              child: const Icon(CupertinoIcons.add_circled))
+                          : const SizedBox(),
+                      const SizedBox(
+                        width: 10,
                       ),
+                      Expanded(
+                          child: SearchTextField(
+                        onPressed: () {},
+                        text: "Chercher un Etablissment...",
+                        controller: _searchController,
+                      )),
                     ],
                   ),
                   const SizedBox(
-                    height: 30,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 20.0),
-                    child: Text(
-                      userData['nom'].substring(0, 1).toUpperCase() +
-                          userData['nom'].substring(1) +
-                          " " +
-                          userData['prenom']
-                              .substring(0, 1)
-                              .toUpperCase() +
-                          userData['prenom'].substring(1),
-                      style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: whiteColor),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    decoration: const BoxDecoration(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(15),
-                        topRight: Radius.circular(15),
-                      ),
-                      color: whiteColor,
-                    ),
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          const Padding(
-                            padding:
-                                EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Text(
-                              "Bienvenue à...",
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 30,
-                          ),
-                          ListTile(
-                                      title: const Text(
-                                        "Page d'accueil",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      leading: SvgPicture.asset(
-                                        'assets/images/accueil.svg',
-                                        height: 25.0,
-                                        width: 70.0,
-                                        allowDrawingOutsideViewBox: true,
-                                      ),
-                                      onTap: () {
-                                        Get.off(() => const HomeScreen(),
-                                            transition:
-                                                Transition.rightToLeft);
-                                      },
-                                    ),
-                                   const  SizedBox(height: 30,),
-                          userData['role'] == "1/2 année"
-                              ? ListTile(
-                                  title: const Text(
-                                    "Section Sciences ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/direction.svg',
-                                    height: 30.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const HomeScience(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                )
-                              : ListTile(
-                                  title: const Text(
-                                    "Etablissments",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/education.svg',
-                                    height: 25.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const Etablissement(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          userData['role'] == "1/2 année"
-                              ? ListTile(
-                                  title: const Text(
-                                    "Section Economie/Gestion ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/direction.svg',
-                                    height: 30.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(
-                                        () => const EcoGestionScreen(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                )
-                              : ListTile(
-                                  title: const Text(
-                                    "Formations",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/formation.svg',
-                                    height: 25.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const Formation(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          userData['role'] == "1/2 année"
-                              ? ListTile(
-                                  title: const Text(
-                                    "Section Lettres/Langues ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/direction.svg',
-                                    height: 30.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const LettresScreen(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                )
-                              : ListTile(
-                                  title: const Text(
-                                    "Bourses",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/bourse.svg',
-                                    height: 25.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const Bourses(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          userData['role'] == "1/2 année"
-                              ? ListTile(
-                                  title: const Text(
-                                    "Section Informatiques ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/direction.svg',
-                                    height: 30.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(
-                                        () =>
-                                            const InformatiqueScreen(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                )
-                              : ListTile(
-                                  title: const Text(
-                                    "Experiences",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/works.svg',
-                                    height: 30.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const Experience(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          userData['role'] == "1/2 année"
-                              ? ListTile(
-                                  title: const Text(
-                                    "Questions des Élèves ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/ask2.svg',
-                                    height: 40.0,
-                                    width: 50.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const AvisHome(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                )
-                              : ListTile(
-                                  title: const Text(
-                                    "Evennements",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/event.svg',
-                                    height: 25.0,
-                                    width: 60.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const Evenement(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                ),
-                          userData['role'] == "1/2 année"
-                              ? Container()
-                              : userData['role'] == "admin"
-                                  ? Container()
-                                  : const SizedBox(
-                                      height: 20,
-                                    ),
-                          userData['role'] == "1/2 année"
-                              ? Container()
-                              : userData['role'] == "admin"
-                                  ? Container()
-                                  : ListTile(
-                                      title: const Text(
-                                        "Questions ",
-                                        style: TextStyle(
-                                            fontWeight:
-                                                FontWeight.w600),
-                                      ),
-                                      leading: SvgPicture.asset(
-                                        'assets/images/ask2.svg',
-                                        height: 40.0,
-                                        width: 40.0,
-                                        allowDrawingOutsideViewBox:
-                                            true,
-                                      ),
-                                      onTap: () {
-                                        Get.off(() => const AvisHome(),
-                                            transition:
-                                                Transition.rightToLeft);
-                                      },
-                                    ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          userData['role'] == "admin"
-                              ? ListTile(
-                                      title: const Text(
-                                        "Reclamations",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.w600),
-                                      ),
-                                      leading: SvgPicture.asset(
-                                        'assets/images/ask2.svg',
-                                        height: 40.0,
-                                        width: 40.0,
-                                        allowDrawingOutsideViewBox: true,
-                                      ),
-                                      onTap: () {
-                                        Get.off(() => const Reclamation(),
-                                            transition:
-                                                Transition.rightToLeft);
-                                      },
-                                    )
-                              : ListTile(
-                                  title: const Text(
-                                    "Questionner le robot ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/ask2.svg',
-                                    height: 40.0,
-                                    width: 70.0,
-                                    // allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(() => const Robot(),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                ),
-                          userData['role'] == "1/2 année"
-                              ? const SizedBox(
-                                  height: 20,
-                                )
-                              : Container(),
-                          userData['role'] == "admin"
-                              ? const SizedBox(
-                                          height: 20,
-                                        )
-                              : userData['role'] == "1/2 année"
-                                  ? Container()
-                                  : const SizedBox(
-                                      height: 20,
-                                    ),
-                          userData['role'] == "1/2 année"
-                              ? Container()
-                              : userData['role'] == "admin"
-                                  ? Container()
-                                  : ListTile(
-                                      title: const Text(
-                                        "Notifications ",
-                                        style: TextStyle(
-                                            fontWeight:
-                                                FontWeight.w600),
-                                      ),
-                                      leading: SvgPicture.asset(
-                                        'assets/images/notification.svg',
-                                        height: 30.0,
-                                        width: 70.0,
-                                        allowDrawingOutsideViewBox:
-                                            true,
-                                      ),
-                                      onTap: () {
-                                        Get.off(
-                                            () => Notifications(
-                                                  uid: userData['uid'],
-                                                ),
-                                            transition:
-                                                Transition.rightToLeft);
-                                      },
-                                    ),
-                          userData['role'] == "admin"
-                              ? Container()
-                              : userData['role'] == "1/2 année"
-                                  ? Container()
-                                  : const SizedBox(
-                                      height: 20,
-                                    ),
-                          userData['role'] == "1/2 année"
-                              ? ListTile(
-                                  title: const Text(
-                                    "Notifications ",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600),
-                                  ),
-                                  leading: SvgPicture.asset(
-                                    'assets/images/notification.svg',
-                                    height: 30.0,
-                                    width: 70.0,
-                                    allowDrawingOutsideViewBox: true,
-                                  ),
-                                  onTap: () {
-                                    Get.off(
-                                        () => Notifications(
-                                              uid: userData['uid'],
-                                            ),
-                                        transition:
-                                            Transition.rightToLeft);
-                                  },
-                                )
-                              : userData['role'] == "admin"
-                                  ? ListTile(
-                                      title: const Text(
-                                        "Ajouter Actualité",
-                                        style: TextStyle(
-                                            fontWeight:
-                                                FontWeight.w600),
-                                      ),
-                                      leading: SvgPicture.asset(
-                                        'assets/images/add.svg',
-                                        height: 25.0,
-                                        width: 70.0,
-                                        allowDrawingOutsideViewBox:
-                                            true,
-                                      ),
-                                      onTap: () {
-                                        Get.off(
-                                            () => const AddActualite(),
-                                            transition:
-                                                Transition.rightToLeft);
-                                      },
-                                    )
-                                  : ListTile(
-                                      title: const Text(
-                                        "Contact",
-                                        style: TextStyle(
-                                            fontWeight:
-                                                FontWeight.w600),
-                                      ),
-                                      leading: SvgPicture.asset(
-                                        'assets/images/typing.svg',
-                                        height: 40.0,
-                                        width: 70.0,
-                                        allowDrawingOutsideViewBox:
-                                            true,
-                                      ),
-                                      onTap: () {
-                                        Get.off(() => const Contact(),
-                                            transition:
-                                                Transition.rightToLeft);
-                                      },
-                                    ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ListTile(
-                            title: const Text(
-                              "Profile",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            leading: SvgPicture.asset(
-                              'assets/images/profile.svg',
-                              height: 30.0,
-                              width: 70.0,
-                              allowDrawingOutsideViewBox: true,
-                            ),
-                            onTap: () {
-                              Get.off(() => const Profile(),
-                                  transition: Transition.rightToLeft);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ListTile(
-                            title: const Text(
-                              "Déconnecter",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600),
-                            ),
-                            leading: SvgPicture.asset(
-                              'assets/images/logout.svg',
-                              height: 25.0,
-                              width: 70.0,
-                              allowDrawingOutsideViewBox: true,
-                            ),
-                            onTap: () async {
-                              await FirebaseAuth.instance.signOut();
-                              if (!mounted) return;
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const LoginPage()),
-                                  (route) => false);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                        ]),
-                  )
-                ],
-              ),
-            )),
-                  ),
-        backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  userData['role'] == 'admin'
-                      ? GestureDetector(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => AddEtablissement(
-                                          uid: userData['uid'],
-                                        )));
-                          },
-                          child: const Icon(CupertinoIcons.add_circled))
-                      : const SizedBox(),
-                  const SizedBox(
-                    width: 10,
+                    height: 15,
                   ),
                   Expanded(
-                      child: SearchTextField(
-                          onPressed: () {},
-                          text: "Chercher un Etablissment...", controller: _searchController,)),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-        
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _resultList.length,
-                  itemBuilder: (context, index){
-                    return EtablissmentCard(
-                            imageLink: _resultList[index]['imgLink'],
-                            universityName: _resultList[index]['universite'],
-                            university: _resultList[index]['faculte'],
-                            universityDetails: _resultList[index]['description'],
+                    child: ListView.builder(
+                        itemCount: _resultList.length,
+                        itemBuilder: (context, index) {
+                          var result = _resultList[index];
+                          return EtablissmentCard(
+                            imageLink: result['imgLink'],
+                            universityName: result['universite'],
+                            university: result['faculte'],
+                            universityDetails: result['description'],
                             universityspaciality:
                                 "Matser | Ingenieur | Licence",
-                            universityStudentsNumber: _resultList[index]['nombre'],
-                            universityLocation: _resultList[index]['localisation'],
+                            universityStudentsNumber: result['nombre'],
+                            universityLocation: result['localisation'],
                             onPressed: () {
-                             Get.to(()=>EtablissementDetails(
-                                      faculteid: _resultList[index]['faculte_id'],
-                                      universite: _resultList[index]['universite'],
-                                      faculte: _resultList[index]['faculte'],
-                                      nombre: _resultList[index]['nombre'],
-                                      localisation: _resultList[index]['localisation'],
-                                      description: _resultList[index]['description'],
-                                      linkedin: _resultList[index]['linkedin'],
-                                      site: _resultList[index]['siteWeb'],
-                                      telephone: _resultList[index]['telephone'],
-                                      imgLink: _resultList[index]['imgLink']),);
-                                      _searchController.clear();
-                              
+                              Get.to(
+                                () => EtablissementDetails(
+                                    faculteid: result['faculte_id'],
+                                    universite: result['universite'],
+                                    faculte: result['faculte'],
+                                    nombre: result['nombre'],
+                                    localisation: result['localisation'],
+                                    description: result['description'],
+                                    linkedin: result['linkedin'],
+                                    site: result['siteWeb'],
+                                    telephone: result['telephone'],
+                                    imgLink: result['imgLink']),
+                              );
+                              _searchController.clear();
                             },
                           );
-                          
-                  }
-                  
+                        }),
                   ),
+                ],
               ),
-            ],
-          ),
-        ),
-                  );
+            ),
+          );
   }
 }
