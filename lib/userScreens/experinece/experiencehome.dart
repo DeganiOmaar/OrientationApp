@@ -27,6 +27,7 @@ import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/registerscreens/login.dart';
 
 import '../../shared/searchtextfield.dart';
+import '../contact/reclamations.dart';
 
 class Experience extends StatefulWidget {
   const Experience({super.key});
@@ -514,7 +515,24 @@ class _ExperienceState extends State<Experience> {
                             height: 20,
                           ),
                           userData['role'] == "admin"
-                              ? Container()
+                              ? ListTile(
+                                      title: const Text(
+                                        "Reclamations",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      leading: SvgPicture.asset(
+                                        'assets/images/ask2.svg',
+                                        height: 40.0,
+                                        width: 40.0,
+                                        allowDrawingOutsideViewBox: true,
+                                      ),
+                                      onTap: () {
+                                        Get.off(() => const Reclamation(),
+                                            transition:
+                                                Transition.rightToLeft);
+                                      },
+                                    )
                               : ListTile(
                                   title: const Text(
                                     "Questionner le robot ",
@@ -539,7 +557,9 @@ class _ExperienceState extends State<Experience> {
                                 )
                               : Container(),
                           userData['role'] == "admin"
-                              ? Container()
+                              ? const SizedBox(
+                                          height: 20,
+                                        )
                               : userData['role'] == "1/2 année"
                                   ? Container()
                                   : const SizedBox(

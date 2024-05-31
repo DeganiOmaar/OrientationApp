@@ -20,6 +20,7 @@ import 'package:orientation_app/userScreens/experinece/experiencehome.dart';
 import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/registerscreens/login.dart';
 
+import '../../userScreens/contact/reclamations.dart';
 import '../../userScreens/formation/formationhome.dart';
 import '../economieScreens/ecogestion.dart';
 import '../sciencesScreens/home.dart';
@@ -457,7 +458,24 @@ class _NotificationsState extends State<Notifications> {
                                 height: 20,
                               ),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? ListTile(
+                                      title: const Text(
+                                        "Reclamations",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      leading: SvgPicture.asset(
+                                        'assets/images/ask2.svg',
+                                        height: 40.0,
+                                        width: 40.0,
+                                        allowDrawingOutsideViewBox: true,
+                                      ),
+                                      onTap: () {
+                                        Get.off(() => const Reclamation(),
+                                            transition:
+                                                Transition.rightToLeft);
+                                      },
+                                    )
                                   : ListTile(
                                       title: const Text(
                                         "Questionner le robot ",
@@ -482,7 +500,9 @@ class _NotificationsState extends State<Notifications> {
                                     )
                                   : Container(),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? const SizedBox(
+                                          height: 20,
+                                        )
                                   : userData['role'] == "1/2 année"
                                       ? Container()
                                       : const SizedBox(

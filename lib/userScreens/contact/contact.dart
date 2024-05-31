@@ -22,6 +22,11 @@ import 'package:orientation_app/userScreens/experinece/experiencehome.dart';
 import 'package:orientation_app/userScreens/formation/formationhome.dart';
 import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/registerscreens/login.dart';
+import 'package:quickalert/quickalert.dart';
+import 'package:uuid/uuid.dart';
+
+import '../../shared/snackbar.dart';
+import 'reclamations.dart';
 
 class Contact extends StatefulWidget {
   
@@ -32,9 +37,13 @@ class Contact extends StatefulWidget {
 }
 
 class _ContactState extends State<Contact> {
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController subjectController = TextEditingController();
+  TextEditingController messageController = TextEditingController();
   Map userData = {};
-
   bool isLoading = true;
+  bool isLoadingReclamation = false;
 
   getData() async {
     setState(() {
@@ -55,6 +64,47 @@ class _ContactState extends State<Contact> {
     setState(() {
       isLoading = false;
     });
+  }
+
+    ajouterReclamation() async {
+    setState(() {
+      isLoadingReclamation = true;
+    });
+
+    try {
+      CollectionReference reclamations =
+          FirebaseFirestore.instance.collection('reclamations');
+      String newId = const Uuid().v1();
+      reclamations.doc(newId).set({
+        'reclamation_id' : newId,
+        'fullname' : fullnameController.text,
+        'email' : emailController.text,
+        'subject' : subjectController.text,
+        'message' : messageController.text,
+        'reclamation_date' : DateTime.now(),
+        
+      });
+    } catch (err) {
+      if(!mounted) return;
+        showSnackBar(context, "ERROR :  $err ");
+    }
+     setState(() {
+      isLoadingReclamation = false;
+    });
+  }
+
+    afficherAlert() {
+    QuickAlert.show(
+        context: context,
+        type: QuickAlertType.success,
+        text: 'Reclamation ajouter avec succes!',
+        onConfirmBtnTap: () {
+          fullnameController.clear();
+          emailController.clear();
+          subjectController.clear();
+          messageController.clear();
+          Navigator.of(context).pop();
+        });
   }
 
   @override
@@ -460,7 +510,24 @@ class _ContactState extends State<Contact> {
                                 height: 20,
                               ),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? ListTile(
+                                      title: const Text(
+                                        "Reclamations",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      leading: SvgPicture.asset(
+                                        'assets/images/ask2.svg',
+                                        height: 40.0,
+                                        width: 40.0,
+                                        allowDrawingOutsideViewBox: true,
+                                      ),
+                                      onTap: () {
+                                        Get.off(() => const Reclamation(),
+                                            transition:
+                                                Transition.rightToLeft);
+                                      },
+                                    )
                                   : ListTile(
                                       title: const Text(
                                         "Questionner le robot ",
@@ -485,7 +552,9 @@ class _ContactState extends State<Contact> {
                                     )
                                   : Container(),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? const SizedBox(
+                                          height: 20,
+                                        )
                                   : userData['role'] == "1/2 année"
                                       ? Container()
                                       : const SizedBox(
@@ -667,19 +736,15 @@ class _ContactState extends State<Contact> {
             const SizedBox(
               height: 20,
             ),
-            const CustomTextField(text: "Nom et Prenom"),
+             CustomTextField(text: "Nom et Prenom", controller: fullnameController,),
             const SizedBox(
               height: 20,
             ),
-            const CustomTextField(text: "Email"),
+             CustomTextField(text: "Email", controller: emailController,),
             const SizedBox(
               height: 20,
             ),
-            const CustomTextField(text: "Numéro de téléphone"),
-            const SizedBox(
-              height: 20,
-            ),
-            const CustomTextField(text: "Sujet"),
+             CustomTextField(text: "Sujet", controller: subjectController,),
             const SizedBox(
               height: 20,
             ),
@@ -689,6 +754,7 @@ class _ContactState extends State<Contact> {
                   0.9, // <-- TextField width
               height: 180, // <-- TextField height
               child: TextField(
+                controller: messageController,
                 maxLines: null,
                 expands: true,
                 keyboardType: TextInputType.multiline,
@@ -723,14 +789,22 @@ class _ContactState extends State<Contact> {
           child: SizedBox(
                 width: 200,
                 child: ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async{
+                    await ajouterReclamation();
+                     afficherAlert();
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
                     side: BorderSide.none,
                     shape: const StadiumBorder(),
                   ),
-                  child: const Text(
+                  child: isLoadingReclamation ? Center(
+                                child:
+                                    LoadingAnimationWidget.staggeredDotsWave(
+                                  color: whiteColor,
+                                  size: 32,
+                                ),
+                              ):const  Text(
                     "Submit",
                     style: TextStyle(
                         fontWeight: FontWeight.w600, color: Colors.white),

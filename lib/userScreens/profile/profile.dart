@@ -17,6 +17,7 @@ import 'package:orientation_app/robot/robot.dart';
 import 'package:orientation_app/shared/colors.dart';
 import 'package:orientation_app/userScreens/bourses/bourseshome.dart';
 import 'package:orientation_app/userScreens/contact/contact.dart';
+import 'package:orientation_app/userScreens/contact/reclamations.dart';
 import 'package:orientation_app/userScreens/etablissment/etablissementHome.dart';
 import 'package:orientation_app/userScreens/evenement/evenementhome.dart';
 import 'package:orientation_app/userScreens/experinece/experiencehome.dart';
@@ -458,7 +459,24 @@ class _ProfileState extends State<Profile> {
                                 height: 20,
                               ),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? ListTile(
+                                      title: const Text(
+                                        "Reclamations",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      leading: SvgPicture.asset(
+                                        'assets/images/ask2.svg',
+                                        height: 40.0,
+                                        width: 40.0,
+                                        allowDrawingOutsideViewBox: true,
+                                      ),
+                                      onTap: () {
+                                        Get.off(() => const Reclamation(),
+                                            transition:
+                                                Transition.rightToLeft);
+                                      },
+                                    )
                                   : ListTile(
                                       title: const Text(
                                         "Questionner le robot ",
@@ -483,7 +501,9 @@ class _ProfileState extends State<Profile> {
                                     )
                                   : Container(),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? const SizedBox(
+                                          height: 20,
+                                        )
                                   : userData['role'] == "1/2 année"
                                       ? Container()
                                       : const SizedBox(

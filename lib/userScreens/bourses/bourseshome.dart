@@ -28,6 +28,8 @@ import 'package:orientation_app/userScreens/formation/formationhome.dart';
 import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/registerscreens/login.dart';
 
+import '../contact/reclamations.dart';
+
 class Bourses extends StatefulWidget {
   const Bourses({super.key});
 
@@ -40,7 +42,7 @@ class _BoursesState extends State<Bourses> {
   List _resultList = [];
   final TextEditingController _searchController = TextEditingController();
   _onSearchChanged() {
-    print(_searchController.text);
+    // print(_searchController.text);
     searchResultList();
   }
 
@@ -103,7 +105,7 @@ class _BoursesState extends State<Bourses> {
 
       userData = snapshot.data()!;
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
 
     setState(() {
@@ -514,7 +516,24 @@ class _BoursesState extends State<Bourses> {
                             height: 20,
                           ),
                           userData['role'] == "admin"
-                              ? Container()
+                              ? ListTile(
+                                      title: const Text(
+                                        "Reclamations",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      leading: SvgPicture.asset(
+                                        'assets/images/ask2.svg',
+                                        height: 40.0,
+                                        width: 40.0,
+                                        allowDrawingOutsideViewBox: true,
+                                      ),
+                                      onTap: () {
+                                        Get.off(() => const Reclamation(),
+                                            transition:
+                                                Transition.rightToLeft);
+                                      },
+                                    )
                               : ListTile(
                                   title: const Text(
                                     "Questionner le robot ",
@@ -539,7 +558,9 @@ class _BoursesState extends State<Bourses> {
                                 )
                               : Container(),
                           userData['role'] == "admin"
-                              ? Container()
+                              ? const SizedBox(
+                                          height: 20,
+                                        )
                               : userData['role'] == "1/2 année"
                                   ? Container()
                                   : const SizedBox(

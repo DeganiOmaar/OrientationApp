@@ -24,6 +24,7 @@ import 'package:orientation_app/userScreens/formation/formationhome.dart';
 import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/registerscreens/login.dart';
 
+import '../../userScreens/contact/reclamations.dart';
 import '../sciencesScreens/home.dart';
 
 class AvisHome extends StatefulWidget {
@@ -50,7 +51,7 @@ class _AvisHomeState extends State<AvisHome> {
 
       userData = snapshot.data()!;
     } catch (e) {
-      print(e.toString());
+      // print(e.toString());
     }
 
     setState(() {
@@ -468,7 +469,24 @@ class _AvisHomeState extends State<AvisHome> {
                                 height: 20,
                               ),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? ListTile(
+                                      title: const Text(
+                                        "Reclamations",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w600),
+                                      ),
+                                      leading: SvgPicture.asset(
+                                        'assets/images/ask2.svg',
+                                        height: 40.0,
+                                        width: 40.0,
+                                        allowDrawingOutsideViewBox: true,
+                                      ),
+                                      onTap: () {
+                                        Get.off(() => const Reclamation(),
+                                            transition:
+                                                Transition.rightToLeft);
+                                      },
+                                    )
                                   : ListTile(
                                       title: const Text(
                                         "Questionner le robot ",
@@ -493,7 +511,9 @@ class _AvisHomeState extends State<AvisHome> {
                                     )
                                   : Container(),
                               userData['role'] == "admin"
-                                  ? Container()
+                                  ? const SizedBox(
+                                          height: 20,
+                                        )
                                   : userData['role'] == "1/2 année"
                                       ? Container()
                                       : const SizedBox(

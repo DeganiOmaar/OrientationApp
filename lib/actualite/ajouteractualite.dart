@@ -11,6 +11,7 @@ import 'package:orientation_app/shared/colors.dart';
 import 'package:quickalert/models/quickalert_type.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:uuid/uuid.dart';
+// ignore: depend_on_referenced_packages
 import 'package:path/path.dart' show basename;
 
 
@@ -41,10 +42,10 @@ class _AddActualiteState extends State<AddActualite> {
           imgName = "$random$imgName";
         });
       } else {
-        print("NO img selected");
+        // print("NO img selected");
       }
     } catch (e) {
-      print("Error => $e");
+      // print("Error => $e");
     }
   }
 
@@ -68,7 +69,9 @@ class _AddActualiteState extends State<AddActualite> {
         "actualiteContenu": actualiteContenuController.text,
         
       });
-    } catch (err) {}
+    } catch (err) {
+      // print(err);
+    }
 
     setState(() {
       isLoading = false;
@@ -146,7 +149,7 @@ class _AddActualiteState extends State<AddActualite> {
                       validator: (value) {
                     return value!.isEmpty ? "ne peut être vide" : null;
                   },),
-               Spacer(),
+               const Spacer(),
                  Row(
                   children: [
                     Expanded(

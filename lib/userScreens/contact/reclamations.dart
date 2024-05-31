@@ -3,58 +3,40 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
-import 'package:orientation_app/actualite/acceuilcard.dart';
+import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:intl/intl.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:orientation_app/actualite/ajouteractualite.dart';
-import 'package:orientation_app/actualite/skeltoncard.dart';
-import 'package:orientation_app/lyceeScreens/notifications/notifications.dart';
-import 'package:orientation_app/lyceeScreens/questionScreens/questionhome.dart';
+import 'package:orientation_app/actualite/homescreen.dart';
 import 'package:orientation_app/lyceeScreens/economieScreens/ecogestion.dart';
 import 'package:orientation_app/lyceeScreens/informatiqueScreens/informatique.dart';
 import 'package:orientation_app/lyceeScreens/lettresScreens/lettres.dart';
+import 'package:orientation_app/lyceeScreens/notifications/notifications.dart';
+import 'package:orientation_app/lyceeScreens/questionScreens/questionhome.dart';
 import 'package:orientation_app/lyceeScreens/sciencesScreens/home.dart';
 import 'package:orientation_app/robot/robot.dart';
 import 'package:orientation_app/shared/colors.dart';
-import 'package:orientation_app/userScreens/bourses/bourseshome.dart';
 import 'package:orientation_app/userScreens/contact/contact.dart';
 import 'package:orientation_app/userScreens/etablissment/etablissementHome.dart';
 import 'package:orientation_app/userScreens/evenement/evenementhome.dart';
 import 'package:orientation_app/userScreens/experinece/experiencehome.dart';
 import 'package:orientation_app/userScreens/formation/formationhome.dart';
-import 'package:orientation_app/userScreens/profile/profile.dart';
 import 'package:orientation_app/userScreens/registerscreens/login.dart';
 
-import '../userScreens/contact/reclamations.dart';
+import '../bourses/bourseshome.dart';
+import '../profile/profile.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Reclamation extends StatefulWidget {
+  const Reclamation({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<Reclamation> createState() => _ReclamationState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  List _allResult = [];
-  getJobsStream() async {
-    var data = await FirebaseFirestore.instance
-        .collection('actualite')
-        // .orderBy('faculte')
-        .get();
-
-    setState(() {
-      _allResult = data.docs;
-    });
-    // searchResultList();
-  }
-
-  @override
-  void didChangeDependencies() {
-    getJobsStream();
-    super.didChangeDependencies();
-  }
-
-  Map userData = {};
+class _ReclamationState extends State<Reclamation> {
+Map userData = {};
   bool isLoading = true;
+  bool isLoadingReclamation = false;
 
   getData() async {
     setState(() {
@@ -69,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
       userData = snapshot.data()!;
     } catch (e) {
-      // print(e.toString());
+      print(e.toString());
     }
 
     setState(() {
@@ -79,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    // _searchController.addListener(_onSearchChanged);
     super.initState();
     getData();
   }
@@ -87,69 +70,30 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return isLoading
         ? Scaffold(
-           appBar: AppBar(
-                centerTitle: true,
-                title: const Row(
-                  children: [
-                    SizedBox(
-                      width: 55,
-                    ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      "Page d'acceuil",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
-                    )
-                  ],
-                ),
-                backgroundColor: Colors.white,
-                leading: Builder(
-                  builder: (context) => Container(
-                    decoration: BoxDecoration(
-                      color: whiteColor,
-                      borderRadius: BorderRadius.circular(25),
-                    ),
-                    child: IconButton(
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        icon: const Icon(
-                          Iconsax.user,
-                          color: blackColor,
-                        )),
-                  ),
-                ),
-              ),
-            backgroundColor: Colors.white,
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal:7.0),
-              child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1 / 1.15,
-                        crossAxisSpacing: 10,
-                        mainAxisSpacing: 5),
-                itemCount: 8,
-                itemBuilder: (context, index){
-                  return const SkeltonCard();
-                }),
+            backgroundColor: whiteColor,
+            body: Center(
+              child: LoadingAnimationWidget.discreteCircle(
+                  size: 32,
+                  color: const Color.fromARGB(255, 16, 16, 16),
+                  secondRingColor: Colors.indigo,
+                  thirdRingColor: Colors.pink.shade400),
             ),
-          )
-        : Scaffold(
-          appBar: AppBar(
+          ): 
+    
+    Scaffold(
+     backgroundColor: backgroundgreyColor,
+                    appBar: AppBar(
             centerTitle: true,
             title: const Row(
               children: [
                 SizedBox(
-                  width: 55,
+                  width: 65,
                 ),
                 SizedBox(
                   width: 10,
                 ),
                 Text(
-                  "Page d'acceuil",
+                  "Reclamations",
                   style:
                       TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
                 )
@@ -721,22 +665,102 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 )),
           ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 7.0, vertical: 15),
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1 / 1.15,
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 10),
-              itemCount: _allResult.length,
-              itemBuilder: ((context, index) {
-                return AcceuilCard(
-                    firstImageLink: _allResult[index]['imgLink'],
-                    firstTitle: _allResult[index]["actualiteTitre"]);
-              }),
-            ),
-          ),
-        );
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          children: [
+            Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('reclamations')
+                        .snapshots(),
+                    builder: (BuildContext context,
+                        AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if (snapshot.hasError) {
+                        return const Text('Something went wrong');
+                      }
+            
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Center(
+                          child: LoadingAnimationWidget.discreteCircle(
+                              size: 32,
+                              color: Colors.black,
+                              secondRingColor: Colors.indigo,
+                              thirdRingColor: Colors.pink.shade400),
+                        );
+                      }
+            
+                      return ListView(
+                        children: snapshot.data!.docs
+                            .map((DocumentSnapshot document) {
+                          Map<String, dynamic> data =
+                              document.data()! as Map<String, dynamic>;
+                          if (snapshot.hasData) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  data['fullname'],
+                                  style: const TextStyle(
+                                      color: mainColor, fontSize: 17, fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                Text(
+                                  data['message'],
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SvgPicture.asset(
+                                      "assets/images/point.svg",
+                                      height: 14,
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      DateFormat('yMMMd').format(
+                                          data['reclamation_date'].toDate()),
+                                      style:
+                                          const TextStyle(color: Colors.grey),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 7,
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                )
+                              ],
+                            );
+                          } else {
+                            return Container();
+                          }
+                        }).toList(),
+                      );
+                    },
+                  ),
+                ),
+              )
+          ],
+        ),
+      ),
+    );
   }
 }
