@@ -199,7 +199,7 @@ class _EtablissementDetailsState extends State<EtablissementDetails> {
             ),
             Details(
                 icons: Icons.network_cell,
-                description: "Licenece | Ingenieurie | Master"),
+                description: "Licenece |  Master"),
           ],
         ),
         SizedBox(
@@ -215,22 +215,22 @@ class _EtablissementDetailsState extends State<EtablissementDetails> {
         ),
         DescriptionText(descriptionText: widget.description),
         SizedBox(
-          height: 10,
+          height: 15,
         ),
         EtablissementInfo(
             icons: FontAwesomeIcons.linkedin, text: widget.linkedin),
         SizedBox(
-          height: 10,
+          height: 15,
         ),
         EtablissementInfo(
             icons: FontAwesomeIcons.chrome, text: widget.site),
         SizedBox(
-          height: 10,
+          height: 15,
         ),
         EtablissementInfo(
             icons: FontAwesomeIcons.mapLocation, text: widget.localisation),
         SizedBox(
-          height: 10,
+          height: 15,
         ),
         EtablissementInfo(
             icons: FontAwesomeIcons.phone, text: widget.telephone),
@@ -238,10 +238,10 @@ class _EtablissementDetailsState extends State<EtablissementDetails> {
           height: 20,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             EtablissementButton(onPressed: () {}, text: " Licence "),
-            EtablissementButton(onPressed: () {}, text: "Ingenieurie"),
+            // EtablissementButton(onPressed: () {}, text: "Ingenieurie"),
             EtablissementButton(onPressed: () {}, text: " Master "),
           ],
         ),

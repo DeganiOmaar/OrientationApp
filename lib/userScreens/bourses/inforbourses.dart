@@ -14,7 +14,7 @@ class InfoBourses extends StatelessWidget {
         children: [
           WidgetSpan(
               child: Padding(
-            padding: const EdgeInsets.only(right: 7.0),
+            padding: const EdgeInsets.only(right: 10.0),
             child: Icon(
               icon,
               color: mainColor,
@@ -25,7 +25,7 @@ class InfoBourses extends StatelessWidget {
               text: text,
               style: const TextStyle(
                   color: Colors.black,
-                  fontSize: 13,
+                  fontSize: 15,
                   fontWeight: FontWeight.w600)),
         ],
       ),

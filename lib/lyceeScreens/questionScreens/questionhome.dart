@@ -500,7 +500,7 @@ class _AvisHomeState extends State<AvisHome> {
                                         // allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const Robot(),
+                                        Get.to(() => const Robot(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },

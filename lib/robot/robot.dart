@@ -161,7 +161,7 @@ class _RobotState extends State<Robot> {
           Text(
             date,
             style: TextStyle(
-                fontSize: 14, color: isPrompt ? Colors.grey : Colors.grey),
+                fontSize: 14, color: isPrompt ? Colors.black54 : Colors.black54 , fontWeight: FontWeight.w700 ),
           ),
         ],
       ),

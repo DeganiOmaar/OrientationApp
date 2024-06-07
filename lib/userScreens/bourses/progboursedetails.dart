@@ -27,14 +27,14 @@ class ProgBourseDetails extends StatelessWidget {
             Text(
               title,
               style: const TextStyle(
-                  fontSize: 15.0, color: blackColor, fontWeight: FontWeight.bold),
+                  fontSize: 15.0, color:Colors.blue , fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 5,
             ),
             Text(
               subtitle,
-              style: const TextStyle(color: greyColor, fontSize: 13),
+              style: const TextStyle(color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
             ),
           ],
         ),

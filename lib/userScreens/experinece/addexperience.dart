@@ -254,7 +254,7 @@ class _AjouterExperienceState extends State<AjouterExperience> {
                             : const Text(
                                 "Ajouter une experience",
                                 style: TextStyle(
-                                    fontSize: 13, color: whiteColor),
+                                    fontSize: 15, color: whiteColor),
                               ))),
               ],
             ),

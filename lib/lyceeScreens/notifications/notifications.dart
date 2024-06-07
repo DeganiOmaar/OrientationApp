@@ -489,7 +489,7 @@ class _NotificationsState extends State<Notifications> {
                                         // allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const Robot(),
+                                        Get.to(() => const Robot(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },

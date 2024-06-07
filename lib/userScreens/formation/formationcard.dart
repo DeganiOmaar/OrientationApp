@@ -59,14 +59,6 @@ class _FormationCardState extends State<FormationCard> {
                  height: 125,
                 errorWidget: const Icon(Icons.error),
               ),
-      
-      
-                //     child: Image.network(
-                //    widget.imageLink,
-                //       fit: BoxFit.cover,
-                //       width: MediaQuery.of(context).size.width * 0.4,
-                //       height: 125,
-                // ),
                     ),
                 const SizedBox(
                   width: 15,
@@ -76,7 +68,7 @@ class _FormationCardState extends State<FormationCard> {
                     Text(
                       widget.formationType,
                       style: const TextStyle(
-                          fontSize: 14,
+                          fontSize: 16,
                           fontWeight: FontWeight.w500,
                           color: blackColor),
                     ),
@@ -86,8 +78,8 @@ class _FormationCardState extends State<FormationCard> {
                     Text(
                       widget.comapgnyName,
                       style: const TextStyle(
-                          fontSize: 13,
-                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
                           color: mainColor),
                     ),
                     const SizedBox(

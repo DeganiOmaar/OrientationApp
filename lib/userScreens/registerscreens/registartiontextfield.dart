@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../shared/colors.dart';
-
 // ignore: must_be_immutable
 class RegistrationTextField extends StatefulWidget {
   final IconData icon;
@@ -33,16 +31,16 @@ class _RegistrationTextFieldState extends State<RegistrationTextField> {
           ),
           child: Icon(
             widget.icon,
-            color: greyColor,
+            color: Colors.black,
             size: 22,
           ),
         ),
         hintText: widget.text,
-        hintStyle: const TextStyle(color: Colors.black26, fontSize: 16),
+        hintStyle: const TextStyle(color: Colors.black, fontSize: 16),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
           borderSide: const BorderSide(
-            color: Color.fromARGB(255, 220, 220, 220),
+            color: Colors.black,
           ),
         ),
         border: OutlineInputBorder(
@@ -51,7 +49,7 @@ class _RegistrationTextFieldState extends State<RegistrationTextField> {
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
           borderSide: const BorderSide(
-            color: Color.fromARGB(255, 220, 220, 220),
+            color: Colors.black,
           ),
         ),
         contentPadding: const EdgeInsets.symmetric(vertical: 12),

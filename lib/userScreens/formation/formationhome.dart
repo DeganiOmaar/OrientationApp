@@ -543,7 +543,7 @@ class _FormationState extends State<Formation> {
                                           // allowDrawingOutsideViewBox: true,
                                         ),
                                         onTap: () {
-                                          Get.off(() => const Robot(),
+                                          Get.to(() => const Robot(),
                                               transition:
                                                   Transition.rightToLeft);
                                         },

@@ -281,7 +281,7 @@ class _AjouterEvenementState extends State<AjouterEvenement> {
                           : const Text(
                               "Ajouter un evenement",
                               style:
-                                  TextStyle(fontSize: 13, color: whiteColor),
+                                  TextStyle(fontSize: 15, color: whiteColor, fontWeight: FontWeight.w700),
                             ))),
             ],
           ),

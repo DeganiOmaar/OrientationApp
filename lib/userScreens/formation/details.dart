@@ -19,7 +19,7 @@ class DetailsFormation extends StatelessWidget {
         size: 18.0,
       ),
       label:
-          Text(text, style: const TextStyle(color: Colors.black, fontSize: 13)),
+          Text(text, style: const TextStyle(color: Colors.black, fontSize: 15)),
     );
   }
 }

@@ -190,9 +190,9 @@ class _ReponseState extends State<Reponse> {
                     niveau: widget.niveau,
                     etablissement: widget.etablissement,
                     question: widget.question),
-                Gap(10),
+                const Gap(10),
                 Divider(thickness: 1, color: Colors.grey.shade500),
-                Gap(20),
+                const Gap(20),
                 Expanded(
                   child: StreamBuilder<QuerySnapshot>(
                     stream: FirebaseFirestore.instance
@@ -255,7 +255,7 @@ class _ReponseState extends State<Reponse> {
                                 fillColor: Colors.grey.shade300,
                                 filled: true,
                                 // contentPadding: const EdgeInsets.all(2),
-                                hintText: "Répondre au post",
+                                hintText: "Répondre au question",
                                 suffixIcon: IconButton(
                                   onPressed: () async {
                                     if (reponseController.text.isNotEmpty) {

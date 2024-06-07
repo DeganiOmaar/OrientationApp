@@ -111,7 +111,7 @@ class _LoginPageState extends State<LoginPage> {
               const Row(
                 children: [
                   Text("Accédez à votre espace personnel en toute sécurité.",
-                      style: TextStyle(color: Colors.grey)),
+                      style: TextStyle(color: Colors.black)),
                 ],
               ),
               const SizedBox(
@@ -147,12 +147,12 @@ class _LoginPageState extends State<LoginPage> {
                       child: isPasswordVisible
                           ? const Icon(
                               CupertinoIcons.eye,
-                              color: greyColor,
+                              color: Colors.black,
                               size: 22,
                             )
                           : const Icon(
                               CupertinoIcons.eye_slash,
-                              color: greyColor,
+                              color: Colors.black,
                               size: 22,
                             )),
                   prefixIcon: const Padding(
@@ -168,11 +168,11 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   hintText: "Mot de passe",
                   hintStyle:
-                      const TextStyle(color: Colors.black26, fontSize: 16),
+                      const TextStyle(color: Colors.black, fontSize: 16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black,
                     ),
                   ),
                   border: OutlineInputBorder(
@@ -181,7 +181,7 @@ class _LoginPageState extends State<LoginPage> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black,
                     ),
                   ),
                   contentPadding: const EdgeInsets.symmetric(vertical: 12),
@@ -197,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     Text(
                       "Mot de passe oublie?",
-                      style: TextStyle(color: greyColor),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ],
                 ),
@@ -245,7 +245,7 @@ class _LoginPageState extends State<LoginPage> {
                               : const Text(
                                   "Connecter",
                                   style: TextStyle(
-                                      fontSize: 16, color: whiteColor),
+                                      fontSize: 16, color: whiteColor, fontWeight: FontWeight.bold),
                                 ))),
                 ],
               ),
@@ -255,7 +255,7 @@ class _LoginPageState extends State<LoginPage> {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Text(
                   "Vous n'avez pas de compte?",
-                  style: TextStyle(color: greyColor),
+                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
                 ),
                 TextButton(
                     onPressed: () {
@@ -268,7 +268,7 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     child: const Text(
                       "S'enregistrer",
-                      style: TextStyle(color: mainColor),
+                      style: TextStyle(color: mainColor, fontWeight: FontWeight.bold, fontSize: 17),
                     ))
               ])
             ],

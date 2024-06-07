@@ -13,7 +13,7 @@ class BourseExigence extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Icon(
-          FontAwesomeIcons.check,
+          FontAwesomeIcons.circleCheck,
           color: mainColor,
           size: 20,
         ),
@@ -25,8 +25,8 @@ class BourseExigence extends StatelessWidget {
                   softWrap: true,
             description,
             style: const TextStyle(
-              fontSize: 14.0,
-              color: greyColor,
+              fontSize: 15.0,
+              color: Colors.black87,
               fontWeight: FontWeight.w700,
             ),
             textAlign: TextAlign.justify,

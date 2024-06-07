@@ -15,11 +15,11 @@ class ReplyCard extends StatelessWidget {
       children: [
         Text(reponseNom,
             style: const TextStyle(
-                fontSize: 15, fontWeight: FontWeight.bold, color: mainColor)),
+                fontSize: 17, fontWeight: FontWeight.bold, color: mainColor)),
         const Gap(5),
         Text(
           reponse,
-          style: const TextStyle(color: blackColor, fontSize: 14, fontWeight: FontWeight.w500),
+          style: const TextStyle(color: blackColor, fontSize: 16, fontWeight: FontWeight.w700),
           textAlign: TextAlign.justify,
         ),
         const Gap(10)

@@ -507,7 +507,7 @@ class _EvenementState extends State<Evenement> {
                                         // allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const Robot(),
+                                        Get.to(() => const Robot(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },
@@ -698,12 +698,12 @@ class _EvenementState extends State<Evenement> {
             const Text(
               "Explorez nnotre calendrier d’évenements a venir et prépare-vous a vous immegrer dans des opportunités enrichissantes qui enchiront votre parcours académiques et proffessionnel",
               style: TextStyle(
-                  fontSize: 16, fontWeight: FontWeight.w700, color: greyColor),
+                  fontSize: 16, fontWeight: FontWeight.w700, color: blackColor),
               // textAlign: TextAlign.justify,
               textAlign: TextAlign.left,
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(

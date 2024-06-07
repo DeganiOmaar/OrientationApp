@@ -112,7 +112,7 @@ class _AddEtablissementState extends State<AddEtablissement> {
           appBar: AppBar(
     centerTitle: true,
     title: const Text(
-      "Ajouter une faculté",
+      "Ajouter un établissement",
       style: TextStyle(
           fontSize: 17, color: blackColor, fontWeight: FontWeight.w700),
     ),
@@ -133,7 +133,9 @@ class _AddEtablissementState extends State<AddEtablissement> {
                         backgroundColor: Color.fromARGB(255, 225, 225, 225),
                         radius: 55,
                         backgroundImage:
-                            AssetImage("assets/images/faculte.jpg"),
+                            AssetImage("assets/images/etabb.png", 
+                            
+                            ),
                       )
                     : ClipOval(
                         child: Image.file(

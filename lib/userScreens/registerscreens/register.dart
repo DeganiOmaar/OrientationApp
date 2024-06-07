@@ -109,7 +109,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               const Text(
                  "Rejoignez notre communauté en quelques étapes simples.",
-                  style: TextStyle(color: Colors.grey)),
+                  style: TextStyle(color: Colors.black)),
               const SizedBox(
                 height: 50,
               ),
@@ -160,21 +160,21 @@ class _RegisterPageState extends State<RegisterPage> {
               Container(
                 width: double.infinity,
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black26),
+                  border: Border.all(color: Colors.black),
                     color: Colors.white, borderRadius: BorderRadius.circular(25)),
                 child: Center(
                   child: DropdownButton<String>(
                     value: selectedRole,
-                    icon: const Icon(Icons.arrow_downward,color: Colors.black26,),
+                    icon: const Icon(Icons.arrow_downward,color: Colors.black,),
                     iconSize: 24,
                     elevation: 16,
-                    style: const TextStyle(color: blackColor, fontSize: 17),
+                    style: const TextStyle(color: Colors.black, fontSize: 17),
                     onChanged: (newValue) {
                       setState(() {
                         selectedRole = newValue!;
                       });
                     },
-                    hint: const Text('ajouter votre role',style: TextStyle(color: Colors.black26, fontSize: 16),),
+                    hint: const Text('ajouter votre role',style: TextStyle(color: Colors.black, fontSize: 16),),
                     underline: Container(),
                     items: <String>['1/2 année', 'baccalauréat/licence', 'société', ]
                         .map<DropdownMenuItem<String>>((String value) {
@@ -207,12 +207,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: isPasswordVisible
                           ? const Icon(
                               CupertinoIcons.eye,
-                              color: greyColor,
+                              color: Colors.black,
                               size: 22,
                             )
                           : const Icon(
                               CupertinoIcons.eye_slash,
-                              color: greyColor,
+                              color: Colors.black,
                               size: 22,
                             )),
                   prefixIcon: const Padding(
@@ -222,17 +222,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     child: Icon(
                       CupertinoIcons.lock_rotation_open,
-                      color: greyColor,
+                      color: Colors.black,
                       size: 22,
                     ),
                   ),
                   hintText: "Mot de passe",
                   hintStyle:
-                      const TextStyle(color: Colors.black26, fontSize: 16),
+                      const TextStyle(color: Colors.black, fontSize: 16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black,
                     ),
                   ),
                   border: OutlineInputBorder(
@@ -241,7 +241,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black,
                     ),
                   ),
                   contentPadding: const EdgeInsets.symmetric(vertical: 12),
@@ -269,12 +269,12 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: isPasswordVisible
                           ? const Icon(
                               CupertinoIcons.eye,
-                              color: greyColor,
+                              color: Colors.black,
                               size: 22,
                             )
                           : const Icon(
                               CupertinoIcons.eye_slash,
-                              color: greyColor,
+                              color: Colors.black,
                               size: 22,
                             )),
                   prefixIcon: const Padding(
@@ -284,17 +284,17 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     child: Icon(
                       CupertinoIcons.lock_rotation_open,
-                      color: greyColor,
+                      color: Colors.black,
                       size: 22,
                     ),
                   ),
                   hintText: "Confirmer mot de passe",
                   hintStyle:
-                      const TextStyle(color: Colors.black26, fontSize: 16),
+                      const TextStyle(color: Colors.black, fontSize: 16),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black,
                     ),
                   ),
                   border: OutlineInputBorder(
@@ -303,7 +303,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black,
                     ),
                   ),
                   contentPadding: const EdgeInsets.symmetric(vertical: 12),
@@ -320,7 +320,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text(
                       "Mot de passe oublie?",
-                      style: TextStyle(color: greyColor),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ],
                 ),
@@ -367,7 +367,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               : const Text(
                                   "Enregistrer",
                                   style: TextStyle(
-                                      fontSize: 16, color: whiteColor),
+                                      fontSize: 16, color: whiteColor, fontWeight: FontWeight.bold),
                                 ))),
                 ],
               ),
@@ -377,7 +377,7 @@ class _RegisterPageState extends State<RegisterPage> {
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 const Text(
                   "Vous avez un compte?",
-                  style: TextStyle(color: greyColor),
+                  style: TextStyle(color: Colors.black, fontWeight: FontWeight.w700),
                 ),
                 TextButton(
                     onPressed: () {
@@ -390,7 +390,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     },
                     child: const Text(
                       "S'inscrire",
-                      style: TextStyle(color: mainColor),
+                      style: TextStyle(color: mainColor, fontWeight: FontWeight.bold, fontSize: 17),
                     ))
               ])
             ],

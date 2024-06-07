@@ -12,16 +12,16 @@ class EtablissementInfo extends StatelessWidget {
       children: [
         Icon(
           icons,
-          size: 18,
+          size: 24,
           color: mainColor,
         ),
         const SizedBox(
-          width: 10,
+          width: 15,
         ),
         Text(
           text,
           style: const TextStyle(
-              color: greyColor, fontSize: 12, fontWeight: FontWeight.w500),
+              color: Colors.black54, fontSize: 14, fontWeight: FontWeight.w700),
         )
       ],
     );

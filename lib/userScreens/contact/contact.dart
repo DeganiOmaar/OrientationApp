@@ -541,7 +541,7 @@ class _ContactState extends State<Contact> {
                                         // allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const Robot(),
+                                        Get.to(() => const Robot(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },
@@ -762,11 +762,11 @@ class _ContactState extends State<Contact> {
                   filled: true,
                   fillColor: Colors.transparent,
                   hintText: "Message",
-                  hintStyle: const TextStyle(color: Colors.black26),
+                  hintStyle: const TextStyle(color: Colors.black),
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(255, 220, 220, 220),
+                      color: Colors.black87,
                     ),
                   ),
                   border: OutlineInputBorder(

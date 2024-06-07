@@ -41,9 +41,9 @@ class EventCard extends StatelessWidget {
                   Text(
                     eventday,
                     style: const TextStyle(
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w700,
                         fontSize: 14.0,
-                        color: Color.fromARGB(255, 226, 206, 22)),
+                        color: Colors.red, ),
                   ),
                   const SizedBox(
                     height: 2,
@@ -69,7 +69,7 @@ class EventCard extends StatelessWidget {
                           ),
                           Text(
                             eventtime,
-                            style: const TextStyle(fontSize: 14, color: greyColor),
+                            style: const TextStyle(fontSize: 14, color: blackColor, fontWeight: FontWeight.w700),
                           )
                         ],
                       ),
@@ -88,7 +88,7 @@ class EventCard extends StatelessWidget {
                           ),
                           Text(
                             location,
-                            style: const TextStyle(fontSize: 14, color: greyColor),
+                            style: const TextStyle(fontSize: 14, color: blackColor, fontWeight: FontWeight.w700),
                           )
                         ],
                       ),
@@ -100,6 +100,7 @@ class EventCard extends StatelessWidget {
                   Text(
                     description,
                     style: const TextStyle(
+                      fontWeight: FontWeight.w700,
                       fontSize: 14,
                       color: Colors.black87,
                     ),
@@ -112,7 +113,7 @@ class EventCard extends StatelessWidget {
             )
           ],
         ),
-      const SizedBox(height: 20,)
+      const SizedBox(height: 40,)
       ],
     );
   }

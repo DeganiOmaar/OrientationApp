@@ -23,7 +23,7 @@ class BourseButton extends StatelessWidget {
         ),
         child:  Text(
           textButton,
-          style: const TextStyle(fontSize: 13, color: whiteColor),
+          style: const TextStyle(fontSize: 15, color: whiteColor, fontWeight: FontWeight.bold),
         ));
   }
 }

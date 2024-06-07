@@ -543,7 +543,7 @@ class _BoursesState extends State<Bourses> {
                                           // allowDrawingOutsideViewBox: true,
                                         ),
                                         onTap: () {
-                                          Get.off(() => const Robot(),
+                                          Get.to(() => const Robot(),
                                               transition:
                                                   Transition.rightToLeft);
                                         },

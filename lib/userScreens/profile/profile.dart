@@ -490,7 +490,7 @@ class _ProfileState extends State<Profile> {
                                         // allowDrawingOutsideViewBox: true,
                                       ),
                                       onTap: () {
-                                        Get.off(() => const Robot(),
+                                        Get.to(() => const Robot(),
                                             transition:
                                                 Transition.rightToLeft);
                                       },
@@ -696,7 +696,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 Text(
                   userData['email'],
-                  style: const TextStyle(fontSize: 16, color: Colors.black54),
+                  style: const TextStyle(fontSize: 16, color: Colors.black87, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(
                   height: 20,

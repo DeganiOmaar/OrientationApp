@@ -91,9 +91,24 @@ class _AddActualiteState extends State<AddActualite> {
   } 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: 
-    Scaffold(
-      appBar: AppBar(),
+    return Scaffold(
+      appBar: AppBar(
+            centerTitle: true,
+            title: const Row(
+              children: [
+                SizedBox(
+                  width: 85,
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Text(
+                  "Ajouter Actualite",
+                  style:
+                      TextStyle(fontWeight: FontWeight.w700, fontSize: 19),
+                )
+              ],
+            ),),
       body:Padding(
         padding: const EdgeInsets.symmetric(horizontal:20.0),
         child: Form(
@@ -133,7 +148,7 @@ class _AddActualiteState extends State<AddActualite> {
                     ],
                   ),
                 ),
-                const Gap(10),
+                const Gap(15),
                 AddAvisTField(
                     title: 'Titre de l\'actualité',
                     text: 'Ajouter un titre',
@@ -141,10 +156,10 @@ class _AddActualiteState extends State<AddActualite> {
                       validator: (value) {
                     return value!.isEmpty ? "ne peut être vide" : null;
                   },),
-                const Gap(10),
+                const Gap(15),
                 AddAvisTField(
                     title: 'Contenue de l\'actualité',
-                    text: 'Nom de la société',
+                    text: 'Ajouter un contenue',
                     controller: actualiteContenuController, 
                       validator: (value) {
                     return value!.isEmpty ? "ne peut être vide" : null;
@@ -191,16 +206,15 @@ class _AddActualiteState extends State<AddActualite> {
                                 : const Text(
                                     "Ajouter actualite",
                                     style: TextStyle(
-                                        fontSize: 13, color: whiteColor),
+                                        fontSize: 15, color: whiteColor, fontWeight: FontWeight.bold),
                                   ))),
                   ],
                 ),
-                const Gap(10),
+                const Gap(15),
             ],
           ),
         ),
       )
-    )
     );
   }
 }

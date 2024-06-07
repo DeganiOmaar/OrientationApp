@@ -12,19 +12,19 @@ class AddAvisTField extends StatelessWidget {
     return  Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Text(title, style:  const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+           Text(title, style:  const TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
           const SizedBox(height: 10,),
           TextField(
             controller: controller,
             decoration: InputDecoration(
               filled: true,
-              fillColor: Colors.grey[200],
+              fillColor: Colors.transparent,
               hintText: text,
-              hintStyle: const TextStyle(color: Colors.black26),
+              hintStyle: const TextStyle(color: Colors.black87),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(15),
                 borderSide: const BorderSide(
-                  color: Color.fromARGB(255, 220, 220, 220),
+                  color: Colors.black45,
                 ),
               ),
               border: OutlineInputBorder(

@@ -167,7 +167,7 @@ class _FormationDetailsState extends State<FormationDetails> {
                 children: [
                   const Text(
                     "Instructeur",
-                    style: TextStyle(fontSize: 12, color: greyColor),
+                    style: TextStyle(fontSize: 14, color: Colors.blue, fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(
                     height: 5,
@@ -201,7 +201,7 @@ class _FormationDetailsState extends State<FormationDetails> {
                   ),
                   const Text(
                     "Category",
-                    style: TextStyle(fontSize: 12, color: greyColor),
+                    style: TextStyle(fontSize: 14, color: Colors.blue, fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(
                     height: 5,
@@ -272,7 +272,7 @@ class _FormationDetailsState extends State<FormationDetails> {
           const SizedBox(
             height: 10,
           ),
-          const TitleText(title: "Information supplémentaire"),
+          // const TitleText(title: "Information supplémentaire"),
           const SizedBox(
             height: 10,
           ),

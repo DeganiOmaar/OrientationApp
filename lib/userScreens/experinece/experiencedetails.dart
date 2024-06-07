@@ -53,11 +53,11 @@ class ExperienceDetails extends StatelessWidget {
                         color: blackColor),
                   ),
                   const SizedBox(
-                    height: 5,
+                    height: 8,
                   ),
                   Text(
                     filiere,
-                    style: const TextStyle(fontSize: 14, color: greyColor),
+                    style: const TextStyle(fontSize: 14, color: Colors.black87, fontWeight: FontWeight.w700),
                   ),
                 ],
               )
@@ -74,38 +74,62 @@ class ExperienceDetails extends StatelessWidget {
                 color: blackColor),
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
-          const Row(
+          const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Icon(
-                FontAwesomeIcons.facebook,
-                color: mainColor,
-                size: 20,
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.facebook,
+                    color: mainColor,
+                    size: 20,
+                  ),
+                  SizedBox(width: 20,), 
+                  Text("Degani Omar", style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w700),)
+                ],
               ),
               SizedBox(
-                width: 10,
+              height: 20,
               ),
-              Icon(
-                FontAwesomeIcons.github,
-                color: mainColor,
-                size: 20,
-              ),
-              SizedBox(
-                width: 10,
-              ),
-              Icon(
-                FontAwesomeIcons.linkedin,
-                color: mainColor,
-                size: 20,
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.github,
+                    color: mainColor,
+                    size: 20,
+                  ), SizedBox(width: 20,), 
+                  Text("Degani Omaar", style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w700),)
+                ],
               ),
               SizedBox(
-                width: 10,
+              height: 20,
               ),
-              Icon(
-                FontAwesomeIcons.solidMessage,
-                color: mainColor,
-                size: 20,
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.linkedin,
+                    color: mainColor,
+                    size: 20,
+                  ),
+                   SizedBox(width: 20,), 
+                  Text("Degani Omar", style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w700),)
+                ],
+              ),
+              SizedBox(
+              height: 20,
+              ),
+              Row(
+                children: [
+                  Icon(
+                    FontAwesomeIcons.solidMessage,
+                    color: mainColor,
+                    size: 20,
+                  ),
+                   SizedBox(width: 20,), 
+                  Text("deganiomar2001@gmail.com", style: TextStyle(color: Colors.black87, fontWeight: FontWeight.w700),)
+                ],
               ),
             ],
           ),
@@ -118,36 +142,7 @@ class ExperienceDetails extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //         child: BourseButton(
-          //             onPressed: () {}, textButton: "Parcours Educatif")),
-          //     const SizedBox(
-          //       width: 10,
-          //     ),
-          //     Expanded(
-          //         child: BourseButton(
-          //             onPressed: () {}, textButton: "Experience")),
-          //   ],
-          // ),
-          // const SizedBox(
-          //   height: 20,
-          // ),
-          // Row(
-          //   children: [
-          //     Expanded(
-          //         child: BourseButton(
-          //             onPressed: () {}, textButton: "Vie Etdiant")),
-          //     const SizedBox(
-          //       width: 10,
-          //     ),
-          //     Expanded(
-          //         child: BourseButton(
-          //             onPressed: () {}, textButton: "Realisation")),
-          //   ],
-          // )
-       
+        
         ],
       ),
     ),

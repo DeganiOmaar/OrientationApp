@@ -9,13 +9,13 @@ class Details extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(children: [
-      Icon(icons, color: mainColor, size: 15),
+      Icon(icons, color: mainColor, size: 18),
       const SizedBox(
-        width: 2,
+        width: 6,
       ),
       Text(
         description,
-        style: const TextStyle(fontSize: 13, color: blackColor),
+        style: const TextStyle(fontSize: 15, color: blackColor, fontWeight: FontWeight.w600),
         
       )
     ]);

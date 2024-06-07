@@ -29,7 +29,7 @@ class ProfileCard extends StatelessWidget {
       ),
       title: Text(
         text,
-        style: const TextStyle(fontWeight: FontWeight.w400),
+        style: const TextStyle(fontWeight: FontWeight.w700),
       ),
       trailing: Container(
         width: 30,
@@ -40,7 +40,8 @@ class ProfileCard extends StatelessWidget {
         ),
         child: const Icon(
           LineAwesomeIcons.angle_right,
-          color: Colors.black45,
+          color: Colors.black87,
+          
           size: 18,
         ),
       ),

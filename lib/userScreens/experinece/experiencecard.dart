@@ -73,24 +73,24 @@ class ExperienceCard extends StatelessWidget {
                             style: const TextStyle(
                                 fontSize: 14,
                                 color: blackColor,
-                                fontWeight: FontWeight.w600),
+                                fontWeight: FontWeight.w700),
                           ),
                           const SizedBox(
                             width: 10,
                           ),
                           Text(
                             branche,
-                            style: const TextStyle(color: mainColor, fontSize: 13),
+                            style: const TextStyle(color: mainColor, fontSize: 15, fontWeight: FontWeight.bold),
                           )
                         ],
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 12,
                       ),
                       Text(
                         name,
                         style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 16,
                             color: blackColor,
                             fontWeight: FontWeight.bold),
                       ),
@@ -108,7 +108,7 @@ class ExperienceCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
                       Row(
                         children: [
@@ -121,7 +121,7 @@ class ExperienceCard extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 15,
                       ),
                       // Row(
                       //   mainAxisAlignment: MainAxisAlignment.end,

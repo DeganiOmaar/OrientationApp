@@ -133,7 +133,7 @@ class _AllAvisState extends State<AllAvis> {
                                 data['avis'],
                                 style: const TextStyle(
                                     fontSize: 14,
-                                    color: greyColor,
+                                    color: Colors.black87,
                                     fontWeight: FontWeight.w600),
                                 textAlign: TextAlign.justify,
                               ),

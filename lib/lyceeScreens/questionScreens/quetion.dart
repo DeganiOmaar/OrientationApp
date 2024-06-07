@@ -96,7 +96,7 @@ class _AvisState extends State<Avis> {
                                         Text(
                                           data['niveau'],
                                           style: const TextStyle(
-                                              fontSize: 14, color: greyColor),
+                                              fontSize: 14, color: Colors.black54, fontWeight: FontWeight.bold),
                                         ),
                                       ])
                                     ],
@@ -105,11 +105,11 @@ class _AvisState extends State<Avis> {
                                   Text(data['etablissment'],
                                       style: const TextStyle(
                                           fontSize: 15,
-                                          fontWeight: FontWeight.bold)),
+                                          fontWeight: FontWeight.bold,color: mainColor )),
                                   const Gap(10),
                                   Text(
                                     data['question'],
-                                    style: const TextStyle(color: greyColor),
+                                    style: const TextStyle(color: Colors.black87, fontWeight: FontWeight.w800),
                                     textAlign: TextAlign.justify,
                                   ),
                                 ],
