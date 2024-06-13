@@ -31,6 +31,9 @@ class _AjouterExperienceState extends State<AjouterExperience> {
   TextEditingController niveauController = TextEditingController();
   TextEditingController faculteController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
+  TextEditingController facebookController = TextEditingController();
+  TextEditingController gitHubController = TextEditingController();
+  TextEditingController linkedinController = TextEditingController();
   File? imgPath;
   String? imgName;
   bool isLoading = false;
@@ -76,6 +79,9 @@ class _AjouterExperienceState extends State<AjouterExperience> {
         'niveau': niveauController.text,
         'faculte': faculteController.text,
         'description': descriptionController.text,
+        'facebook': facebookController.text,
+        'gitHub': gitHubController.text,
+        'linkedin': linkedinController.text,
       });
     } catch (err) {}
     setState(() {
@@ -95,6 +101,9 @@ class _AjouterExperienceState extends State<AjouterExperience> {
           niveauController.clear();
           faculteController.clear();
           descriptionController.clear();
+          facebookController.clear();
+          gitHubController.clear();
+          linkedinController.clear();
           Navigator.of(context).pop();
         });
   }
@@ -205,6 +214,34 @@ class _AjouterExperienceState extends State<AjouterExperience> {
                 return value!.isEmpty ? "ne peut être vide" : null;
               },
             ),
+            const Gap(10),
+            AddAvisTField(
+              title: 'Facebook',
+              text: 'Ajouter le lien de votre facebook',
+              controller: facebookController,
+              validator: (value) {
+                return value!.isEmpty ? "ne peut être vide" : null;
+              },
+            ),
+            const Gap(10),
+            AddAvisTField(
+              title: 'Linkedin',
+              text: 'Ajouter le lien de votre linkedin',
+              controller: linkedinController,
+              validator: (value) {
+                return value!.isEmpty ? "ne peut être vide" : null;
+              },
+            ),
+            const Gap(10),
+            AddAvisTField(
+              title: 'Github',
+              text: 'Ajouter le lien de votre github',
+              controller: gitHubController,
+              validator: (value) {
+                return value!.isEmpty ? "ne peut être vide" : null;
+              },
+            ),
+
             const Gap(20),
             Row(
               children: [
@@ -213,11 +250,6 @@ class _AjouterExperienceState extends State<AjouterExperience> {
                         onPressed: () async {
                           if (formstate.currentState!.validate()) {
                             await ajouterUneExperience();
-                            // if (!mounted) return;
-                            // Navigator.pushReplacement(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => const Experience()));
                             afficherAlert();
                             setState(() {
                               

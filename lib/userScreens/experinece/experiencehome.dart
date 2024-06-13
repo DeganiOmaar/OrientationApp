@@ -763,6 +763,9 @@ class _ExperienceState extends State<Experience> {
                                               filiere: result['filiere'],
                                               description:
                                                   result['description'],
+                                              facebook: result['facebook'],
+                                              linkedin: result['linkedin'],
+                                              gitHub: result['gitHub'],
                                             )));
                                 _searchController.clear();
                               });
